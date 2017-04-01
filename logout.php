@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +15,14 @@
  *
  * Created by PhpStorm.
  * User: igor
- * Date: 30/03/17
- * Time: 21.09
+ * Date: 01/04/17
+ * Time: 18.06
  *
- * This class control User table and definition methods
+ * This file provide to destroy all content in session and forward to index.php
  */
-class Login
-{
-    private $db;
 
-    public function __construct($db)
-    {
-        $this->db = $db;
-    }
+require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/loader.php");
 
-    /**
-     * @param $username
-     * @param $password
-     * @return mixed
-     */
-    public function doLogin($username, $password)
-    {
-        $sth = $this->db->prepareQuery(User::sq_SelectUser());
-        $sth->bindParam(":username", $username, PDO::PARAM_STR);
-        $sth->bindParam(":password", md5($password), PDO::PARAM_STR);
-
-        $sth->execute();
-        return $sth->fetch(PDO::FETCH_OBJ);
-    }
-}
+session_start();
+session_destroy();
+header("Location: " . __URL__);

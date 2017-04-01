@@ -27,19 +27,13 @@ class configurationClass
      * @var contain db connection info
      */
     private $configuration;
-    /**
-     * @var string contain appDir
-     */
-    private $appDir;
 
     /**
      * configurationClass constructor. Init all attributes
      */
     public function __construct()
     {
-        $this->appDir = getcwd() . '/../app/';
-        $path = $this->appDir . 'resources/config.json';
-        $file = file_get_contents($path);
+        $file = file_get_contents(__CONFJSON__);
         $this->configuration = json_decode($file, TRUE);
     }
 

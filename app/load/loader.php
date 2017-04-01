@@ -26,14 +26,18 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/options.php");
 
 require_once(__APP__ . "resources/Configuration.php");
 
-require_once(__APP__ . "controller/Database.php");
-require_once(__APP__ . "controller/Login.php");
+require_once(__CONTROLLER__ . "Database.php");
+require_once(__CONTROLLER__ . "Login.php");
 
-require_once(__APP__ . "model/User.php");
+require_once(__MODEL__ . "User.php");
 
 //VIEWS, NEVER REQUIRE OR INCLUDE HERE, INCLUDE ONLY ONE TIME IN PAGE.
 /*
- * require_once(__APP__ . "view/index.html");
+ * require_once(__VIEW__ . "index.html");
+ * require_once(__VIEW__ . "footer.html");
+ * require_once(__VIEW__ . "menu.html");
+ * require_once(__VIEW__ . "header.html");
+ * require_once(__VIEW__ . "ricerca.html");
  */
 
 

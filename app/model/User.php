@@ -19,10 +19,26 @@
  * Date: 01/04/17
  * Time: 15.41
  *
- *This class define <<User>> table on db
+ *This class define <<User>> table on db.
  */
 class User
 {
+    /**
+     * @var contain userID on db.user
+     */
+    private $id;
+
+    /**
+     * @var contain Username column for UserID on db.user
+     */
+    private $username;
+
+    public function __construct($id, $username)
+    {
+        $this->id = $id;
+        $this->username = $username;
+    }
+
     /**
      * Return Standard Query for select one user from Username and password.
      * The param must bind on ":username" and ":password".
@@ -34,4 +50,19 @@ class User
         return "SELECT * FROM admin WHERE admin.username LIKE :username AND admin.password LIKE :password";
     }
 
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

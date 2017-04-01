@@ -18,7 +18,7 @@
  * Date: 31/03/17
  * Time: 0.37
  *
- * option control file.
+ * Option control file.
  */
 
 error_reporting(E_ALL);

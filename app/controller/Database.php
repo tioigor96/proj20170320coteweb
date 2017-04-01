@@ -21,7 +21,6 @@
  *
  * This class manage the PDO's Connection.
  */
-require_once(__APP__ . "resources/Configuration.php");
 
 class Database
 {

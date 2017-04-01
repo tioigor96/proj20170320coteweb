@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +15,23 @@
  *
  * Created by PhpStorm.
  * User: igor
- * Date: 30/03/17
- * Time: 21.09
+ * Date: 01/04/17
+ * Time: 17.44
  *
- * This class control User table and definition methods
+ * This file provide to control and show search on db.
  */
-class Login
-{
-    private $db;
 
-    public function __construct($db)
-    {
-        $this->db = $db;
-    }
+require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/loader.php");
 
-    /**
-     * @param $username
-     * @param $password
-     * @return mixed
-     */
-    public function doLogin($username, $password)
-    {
-        $sth = $this->db->prepareQuery(User::sq_SelectUser());
-        $sth->bindParam(":username", $username, PDO::PARAM_STR);
-        $sth->bindParam(":password", md5($password), PDO::PARAM_STR);
+session_start();
 
-        $sth->execute();
-        return $sth->fetch(PDO::FETCH_OBJ);
-    }
+$title = "Ricerca studente";
+
+if (!isset($_SESSION['user'])) { //i'm not logged
+    header("Location: " . __URL__);
+    die("Redirect to login");
 }
+
+include_once(__VIEW__ . "ricerca.html");
+
+?>

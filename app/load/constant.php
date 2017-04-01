@@ -21,6 +21,22 @@
  * This class define all constants on project
  */
 
+//################  HOST    ################
+/**
+ * __ADDR__: Server DNS name
+ */
+define(__ADDR__, $_SERVER['HTTP_HOST']);
+
+/**
+ * __URL__: default url for this site
+ */
+
+define(__URL__, (stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ?
+        'https://' : 'http://')
+    . $_SERVER['HTTP_HOST'] . "/");
+
+
+//################  FILES   ################
 /**
  * __BASEPATH__ path definition
  */
@@ -32,6 +48,16 @@ define(__BASEPATH__, $_SERVER['DOCUMENT_ROOT'] . "/");
 define(__APP__, __BASEPATH__ . "app/");
 
 /**
+ * __RESOURCES__ path definition
+ */
+define(__RESOURCES__, __APP__ . "resources/");
+
+/**
+ * __CONFJSON__ path definition
+ */
+define(__CONFJSON__, __RESOURCES__ . "config.json");
+
+/**
  * __MODEL__ path definition
  */
 define(__MODEL__, __APP__ . "model/");
@@ -39,7 +65,7 @@ define(__MODEL__, __APP__ . "model/");
 /**
  * __CONTROL__ path definition
  */
-define(__CONTROL__, __APP__ . "control/");
+define(__CONTROLLER__, __APP__ . "controller/");
 
 /**
  * __VIEW__ path definition
@@ -49,11 +75,14 @@ define(__VIEW__, __APP__ . "view/");
 /**
  * __HEADER__ view path definition
  */
-
 define(__HEADER__, __VIEW__ . "header.html");
+
+/**
+ * __MENU__ view path definition
+ */
+define(__MENU__, __VIEW__ . "menu.html");
 
 /**
  * __FOOTER__ view path definition
  */
-
 define(__FOOTER__, __VIEW__ . "footer.html");
