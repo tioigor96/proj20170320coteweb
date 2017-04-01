@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,30 +16,22 @@
  *
  * Created by PhpStorm.
  * User: igor
- * Date: 31/03/17
- * Time: 1.06
+ * Date: 01/04/17
+ * Time: 15.41
+ *
+ *This class define <<User>> table on db
  */
-
-function printLogin($messaggi)
+class User
 {
-    ?>
-    <!DOCTYPE html>
-    <html lang="it-IT">
-    <head>
-        <meta charset="UTF-8">
-        <title>Login - <?php echo $messaggi; ?> </title>
-    </head>
-    <body>
-    <h1><?php echo $messaggi; ?></h1>
-    <form action="<?php echo "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>" method="post"
-          name="login">
-        username: <input type="text" name="username"><br/>
-        password: <input type="password" name="password"><br/>
-        <input type="submit" value="Accedi!">
-    </form>
-    </body>
-    </html>
-    <?php
-}
+    /**
+     * Return Standard Query for select one user from Username and password.
+     * The param must bind on ":username" and ":password".
+     *
+     * @return string
+     */
+    public static function sq_SelectUser()
+    {
+        return "SELECT * FROM admin WHERE admin.username LIKE :username AND admin.password LIKE :password";
+    }
 
-?>
+}

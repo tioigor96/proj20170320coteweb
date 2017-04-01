@@ -17,6 +17,8 @@
  * User: igor
  * Date: 31/03/17
  * Time: 0.38
+ *
+ * This class define all constants on project
  */
 
 /**
@@ -27,4 +29,16 @@ define(__BASEPATH__, $_SERVER['DOCUMENT_ROOT'] . "/");
 /**
  * __APP__ path definition
  */
-define(__APP__, $_SERVER['DOCUMENT_ROOT'] . "/app/");
+define(__APP__, __BASEPATH__ . "/app/");
+
+/**
+ * __HEADER__ view path definition
+ */
+
+define(__APP__, __BASEPATH__ . "/app/view/header.php");
+
+/**
+ * __FOOTER__ view path definition
+ */
+
+define(__FOOTER__, __BASEPATH__ . "/app/view/footer.php");

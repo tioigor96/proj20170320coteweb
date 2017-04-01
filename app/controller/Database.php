@@ -18,8 +18,10 @@
  * User: igor
  * Date: 30/03/17
  * Time: 19.40
+ *
+ * This class manage the PDO's Connection.
  */
-require_once("../app/resources/Configuration.php");
+require_once(__APP__ . "resources/Configuration.php");
 
 class Database
 {

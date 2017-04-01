@@ -25,12 +25,16 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/constant.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/options.php");
 
 require_once(__APP__ . "resources/Configuration.php");
+
 require_once(__APP__ . "controller/Database.php");
 require_once(__APP__ . "controller/Login.php");
 
-require_once(__APP__ . "view/index.php");
+require_once(__APP__ . "model/User.php");
 
-
+//VIEWS, NEVER REQUIRE OR INCLUDE HERE, INCLUDE ONLY ONE TIME IN PAGE.
+/*
+ * require_once(__APP__ . "view/index.html");
+ */
 
 
 

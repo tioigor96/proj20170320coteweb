@@ -18,6 +18,8 @@
  * User: igor
  * Date: 30/03/17
  * Time: 21.09
+ *
+ * This class control User table and definition methods
  */
 class Login
 {
@@ -30,8 +32,8 @@ class Login
 
     public function doLogin($username, $password)
     {
-        $sth = $this->db->prepareQuery("SELECT * FROM admin WHERE admin.username LIKE :admin AND admin.password LIKE :password");
-        $sth->bindParam(":admin", $username, PDO::PARAM_STR);
+        $sth = $this->db->prepareQuery(User::sq_SelectUser());
+        $sth->bindParam(":username", $username, PDO::PARAM_STR);
         $sth->bindParam(":password", md5($password), PDO::PARAM_STR);
 
         $sth->execute();
