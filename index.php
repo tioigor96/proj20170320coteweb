@@ -55,8 +55,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $messaggi = "prova login";
 }
 
-include_once(__APP__ . "view/index.html");
-
+include_once(__HEADER__);
+include_once(__VIEW__ . "index.html");
+include_once (__FOOTER__);
 ?>
 
 

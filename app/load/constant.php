@@ -29,16 +29,31 @@ define(__BASEPATH__, $_SERVER['DOCUMENT_ROOT'] . "/");
 /**
  * __APP__ path definition
  */
-define(__APP__, __BASEPATH__ . "/app/");
+define(__APP__, __BASEPATH__ . "app/");
+
+/**
+ * __MODEL__ path definition
+ */
+define(__MODEL__, __APP__ . "model/");
+
+/**
+ * __CONTROL__ path definition
+ */
+define(__CONTROL__, __APP__ . "control/");
+
+/**
+ * __VIEW__ path definition
+ */
+define(__VIEW__, __APP__ . "view/");
 
 /**
  * __HEADER__ view path definition
  */
 
-define(__APP__, __BASEPATH__ . "/app/view/header.php");
+define(__HEADER__, __VIEW__ . "header.html");
 
 /**
  * __FOOTER__ view path definition
  */
 
-define(__FOOTER__, __BASEPATH__ . "/app/view/footer.php");
+define(__FOOTER__, __VIEW__ . "footer.html");
