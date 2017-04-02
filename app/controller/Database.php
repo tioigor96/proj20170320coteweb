@@ -21,7 +21,6 @@
  *
  * This class manage the PDO's Connection.
  */
-
 class Database
 {
     /**
@@ -34,8 +33,9 @@ class Database
     private $configuration;
 
     /**
-     * Database constructor. Init all attributes.
-     * Set default values for fetch as PDO::FETCH_ASSOC
+     * Database constructor.
+     * @param int $attribute; DEFAULT PDO::ATTR_DEFAULT_FETCH_MODE
+     * @param int $value; DEFAULT PDO::FETCH_ASSOC
      */
     public function __construct($attribute = PDO::ATTR_DEFAULT_FETCH_MODE, $value = PDO::FETCH_ASSOC)
     {

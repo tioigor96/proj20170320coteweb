@@ -26,10 +26,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/options.php");
 
 require_once(__APP__ . "resources/Configuration.php");
 
+//CONTROLLERS
 require_once(__CONTROLLER__ . "Database.php");
 require_once(__CONTROLLER__ . "Login.php");
+require_once(__CONTROLLER__ . "SearchStudent.php");
 
+//MODELS
 require_once(__MODEL__ . "User.php");
+require_once(__MODEL__ . "Student.php");
 
 //VIEWS, NEVER REQUIRE OR INCLUDE HERE, INCLUDE ONLY ONE TIME IN PAGE.
 /*

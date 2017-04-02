@@ -27,9 +27,21 @@ session_start();
 
 $title = "Ricerca studente";
 
-if (!isset($_SESSION['user'])) { //i'm not logged
+if (!isset($_SESSION['user'])) {                                //i'm not logged
     header("Location: " . __URL__);
     die("Redirect to login");
+}
+
+if (isset($_POST['id'])) {                                      //i'm looking for student[s]
+    try {
+        $search = new SearchStudent(new Database());
+        print_r($search->doSearch($_POST['id'], $_POST['name'], $_POST['surname']));
+
+        //TODO: new page or only new html?
+
+    } catch (PDOException $e) {
+        die($e->getCode() . ":" . $e->getMessage());
+    }
 }
 
 include_once(__VIEW__ . "ricerca.html");

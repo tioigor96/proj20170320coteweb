@@ -1,4 +1,12 @@
 <?php include_once(__HEADER__); ?>
+<h2>
+    Ricerca studente:
+</h2>
+<form method="post" action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>">
+    Matricola: <input type="text" name="id"><br>
+    Cognome: <input type="text" name="surname"><br>
+    Nome: <input type="text" name="name"><br>
+    <input type="submit" value="Cerca >>">
+</form>
 <?php include_once(__MENU__); ?>
-ciao!
 <?php include_once(__FOOTER__); ?>

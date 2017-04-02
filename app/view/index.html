@@ -1,6 +1,6 @@
 <?php include_once(__HEADER__); ?>
 <h1><?php echo $messaggi; ?></h1>
-<form action="<?php echo "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>" method="post" name="login">
+<form action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>" method="post" name="login">
     username: <input type="text" name="username"><br/>
     password: <input type="password" name="password"><br/>
     <input type="submit" value="Accedi!">

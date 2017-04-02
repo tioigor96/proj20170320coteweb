@@ -16,13 +16,16 @@
  *
  * Created by PhpStorm.
  * User: igor
- * Date: 30/03/17
- * Time: 21.09
+ * Date: 01/04/17
+ * Time: 20.55
  *
- * This class control User table and definition methods
+ * This class manipulate Student.
  */
-class Login
+class SearchStudent
 {
+    /**
+     * @var PDO
+     */
     private $db;
 
     /**
@@ -35,17 +38,25 @@ class Login
     }
 
     /**
-     * @param $username
-     * @param $password
-     * @return mixed
+     * Search a student from ID or NAME or SURNAME
+     * @param string $id; DEFAULT "%"
+     * @param string $name; DEFAULT "%"
+     * @param string $surname; DEFAULT "%"
+     * @return stdObj array
      */
-    public function doLogin($username, $password)
+    public function doSearch($id = "%", $name = "%", $surname = "%")
     {
-        $sth = $this->db->prepareQuery(User::sq_SelectUser());
-        $sth->bindParam(":username", $username, PDO::PARAM_STR);
-        $sth->bindParam(":password", md5($password), PDO::PARAM_STR);
+        $id = strlen($id) > 0 ? $id : "%";
+        $name = strlen($name) > 0 ? $name : "%";
+        $surname = strlen($surname) > 0 ? $surname : "%";
+
+        $sth = $this->db->prepareQuery(Student::sq_SelectStudent());
+
+        $sth->bindParam(":id", $id, PDO::PARAM_STR);
+        $sth->bindParam(":name", $name, PDO::PARAM_STR);
+        $sth->bindParam(":surname", $surname, PDO::PARAM_STR);
 
         $sth->execute();
-        return $sth->fetch(PDO::FETCH_OBJ);
+        return $sth->fetchAll(PDO::FETCH_OBJ);
     }
 }
