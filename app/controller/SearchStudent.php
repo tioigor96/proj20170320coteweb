@@ -38,13 +38,13 @@ class SearchStudent
     }
 
     /**
-     * Search a student from ID or NAME or SURNAME
-     * @param string $id; DEFAULT "%"
-     * @param string $name; DEFAULT "%"
-     * @param string $surname; DEFAULT "%"
+     * Search a student from ID or NAME or SURNAME. Return stdObj array.
+     * @param string $id ; DEFAULT "%"
+     * @param string $name ; DEFAULT "%"
+     * @param string $surname ; DEFAULT "%"
      * @return array
      */
-    public function doSearch($id = "%", $name = "%", $surname = "%")
+    public function searchStudent($id = "%", $name = "%", $surname = "%")
     {
         $id = strlen($id) > 0 ? $id : "%";
         $name = strlen($name) > 0 ? $name : "%";
@@ -58,5 +58,31 @@ class SearchStudent
 
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Search student's exams from his id. Return stdObj array.
+     * @param $id string
+     * @return array
+     */
+    public function searchStudentExams($id)
+    {
+        $sth = $this->db->prepareQuery(Exam::sq_searchExamStudent());
+
+        $sth->bindParam(":id", $id, PDO::PARAM_STR);
+
+        $sth->execute();
+
+        $exams = array();
+        while ($exam = $sth->fetch()) {
+            $exams[] = new Exam($exam['c_name'],
+                $exam['t_name'] . " " . $exam['t_sname'],
+                $exam['l_name'], $exam['cfu'],
+                $exam['voto'] . ($exam['lode']==1 ? " e lode" : ""),
+                date('d/m/Y', strtotime($exam['data'])),
+                $exam['a_name'] . " " . $exam['a_sname']);
+        }
+
+        return $exams;
     }
 }

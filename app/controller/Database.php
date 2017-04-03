@@ -28,7 +28,7 @@ class Database
      */
     private $connection;
     /**
-     * @var configurationClass
+     * @var Configuration
      */
     private $configuration;
 
@@ -39,7 +39,7 @@ class Database
      */
     public function __construct($attribute = PDO::ATTR_DEFAULT_FETCH_MODE, $value = PDO::FETCH_ASSOC)
     {
-        $this->configuration = new configurationClass();
+        $this->configuration = new Configuration();
         $this->connection = new PDO($this->configuration->getDSN(),
             $this->configuration->getDB_User(),
             $this->configuration->getDB_Pass());

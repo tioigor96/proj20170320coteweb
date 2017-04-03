@@ -15,30 +15,36 @@
  *
  * Created by PhpStorm.
  * User: igor
- * Date: 01/04/17
- * Time: 17.44
+ * Date: 04/04/17
+ * Time: 0.45
  *
- * This file provide to control and show search on db.
+ * This page provide to show student information.
  */
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/loader.php");
 
 session_start();
 
-$title = "Ricerca studente";
+$title = "Informazioni studente";
 
 if (!isset($_SESSION['user'])) {                                //i'm not logged
     header("Location: " . __URL__);
     die("Redirect to login");
 }
 
-if (isset($_POST['id'])) {                                      //i'm looking for student[s]
-    try {
-        $search = new SearchStudent(new Database());
-        $students = $search->searchStudent($_POST['id'], $_POST['name'], $_POST['surname']);
-    } catch (PDOException $e) {
-        die($e->getCode() . ":" . $e->getMessage());
-    }
+if (!isset($_GET['id'])) {                                       //Am I visiting this page correctly?
+    header("Refresh: 5; url=" . __URL__ . "ricerca.php");
+    die("Per accedere a questa pagina deve essere settata una ricerca!");
 }
 
-include_once(__VIEW__ . "ricerca.html");
+try {
+    $search = new SearchStudent(new Database());
+    $student = $search->searchStudent($_GET['id']);
+    $exams = $search->searchStudentExams($_GET['id']);
+} catch (PDOException $e) {
+    die($e->getCode() . ":" . $e->getMessage());
+}
+
+print_r($exams);
+//TODO: file stampa
+//include_once(__VIEW__ . "student.html");

@@ -34,14 +34,16 @@ require_once(__CONTROLLER__ . "SearchStudent.php");
 //MODELS
 require_once(__MODEL__ . "User.php");
 require_once(__MODEL__ . "Student.php");
+require_once(__MODEL__ . "Exam.php");
 
-//VIEWS, NEVER REQUIRE OR INCLUDE HERE, INCLUDE ONLY ONE TIME IN PAGE.
+//VIEWS, NEVER REQUIRE OR INCLUDE HERE, INCLUDE ONLY IN DELEGATED PAGE.
 /*
  * require_once(__VIEW__ . "index.html");
  * require_once(__VIEW__ . "footer.html");
  * require_once(__VIEW__ . "menu.html");
  * require_once(__VIEW__ . "header.html");
  * require_once(__VIEW__ . "ricerca.html");
+ * require_once(__VIEW__ . "studente.html");
  */
 
 

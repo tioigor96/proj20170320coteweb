@@ -56,24 +56,6 @@ class Student
     }
 
     /**
-     * Select exams for student from id.
-     * @return string
-     */
-    public static function sq_SelectExams()
-    {
-        return "SELECT corsi.nome, docenti.nome, docenti.cognome, lauree.nome, corsi.cfu,
-                       esami.voto, esami.lode, esami.data, admin.nome, admin.cognome
-                FROM esami
-                      INNER JOIN admin ON esami.FK_admin = admin.PK_id
-                      INNER JOIN studenti ON esami.FK_studente = studenti.matricola
-                      INNER JOIN corsi ON esami.FK_corso = corsi.PK_id
-                      INNER JOIN docenti ON corsi.FK_docente1 = docenti.PK_id
-                      INNER JOIN lauree ON corsi.FK_laurea = lauree.PK_id
-                WHERE studenti.matricola LIKE :id
-                ORDER BY esami.data ASC";
-    }
-
-    /**
      * @return string
      */
     public function getId(): string

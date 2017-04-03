@@ -21,7 +21,7 @@
  *
  * This class get connection information and std dirs.
  */
-class configurationClass
+class Configuration
 {
     /**
      * @var contain db connection info
