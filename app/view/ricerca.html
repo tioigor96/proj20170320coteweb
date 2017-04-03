@@ -8,5 +8,18 @@
     Nome: <input type="text" name="name"><br>
     <input type="submit" value="Cerca >>">
 </form>
-<?php include_once(__MENU__); ?>
-<?php include_once(__FOOTER__); ?>
+
+<?php
+
+if(isset($students)){
+    echo '<h2>Studenti trovati:</h2>';
+    echo '<p>';
+    foreach ($students as $student) {
+    echo "<a href=\"" . __URL__ . "studente.php?id=$student->matricola\">$student->cognome $student->nome</a><br>";
+
+    }
+    echo "</p>";
+}
+
+include_once(__MENU__);
+include_once(__FOOTER__); ?>

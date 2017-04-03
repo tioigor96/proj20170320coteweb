@@ -24,12 +24,12 @@
 class User
 {
     /**
-     * @var contain userID on db.user
+     * @var int userID on db.user
      */
     private $id;
 
     /**
-     * @var contain Username column for UserID on db.user
+     * @var string Username column for UserID on db.user
      */
     private $username;
 
@@ -47,7 +47,9 @@ class User
      */
     public static function sq_SelectUser()
     {
-        return "SELECT * FROM admin WHERE admin.username LIKE :username AND admin.password LIKE :password";
+        return "SELECT * FROM admin " .
+            "WHERE admin.username LIKE :username " .
+            "AND admin.password LIKE :password";
     }
 
     /**

@@ -24,7 +24,7 @@
 class SearchStudent
 {
     /**
-     * @var PDO
+     * @var Database
      */
     private $db;
 
@@ -42,7 +42,7 @@ class SearchStudent
      * @param string $id; DEFAULT "%"
      * @param string $name; DEFAULT "%"
      * @param string $surname; DEFAULT "%"
-     * @return stdObj array
+     * @return array
      */
     public function doSearch($id = "%", $name = "%", $surname = "%")
     {
