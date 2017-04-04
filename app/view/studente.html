@@ -1,0 +1,97 @@
+<?php include_once(__HEADER__); ?>
+
+<h2>Informazioni generali</h2>
+<table border="1">
+    <tr>
+        <td>
+            Matricola
+        </td>
+        <td>
+            Cognome
+        </td>
+        <td>
+            Nome
+        </td>
+        <td>
+            Data di nascita
+        </td>
+        <td>
+            Laurea
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <?php echo $student->matricola; ?>
+        </td>
+        <td>
+            <?php echo $student->cognome; ?>
+        </td>
+        <td>
+            <?php echo $student->nome; ?>
+        </td>
+        <td>
+            <?php echo date('d/m/Y', strtotime($student->data_nascita)); ?>
+        </td>
+        <td>
+            <?php echo $course; ?>
+        </td>
+    </tr>
+</table>
+
+<h2>Esami Sostenuti:</h2>
+<table border="1">
+    <tr>
+        <td>
+            Corso
+        </td>
+        <td>
+            Docente
+        </td>
+        <td>
+            Laurea
+        </td>
+        <td>
+            CFU
+        </td>
+        <td>
+            Voto
+        </td>
+        <td>
+            Data
+        </td>
+        <td>
+            Registrato da
+        </td>
+    </tr>
+    <?php
+        foreach ($exams as $exam ) {
+            echo '<tr>';
+            echo '<td>';
+            echo $exam->subject;
+            echo '</td>';
+            echo '<td>';
+            echo $exam->teacher;
+            echo '</td>';
+            echo '<td>';
+            echo $exam->course;
+            echo '</td>';
+            echo '<td>';
+            echo $exam->CFU;
+            echo '</td>';
+            echo '<td>';
+            echo $exam->degree;
+            echo '</td>';
+            echo '<td>';
+            echo $exam->date;
+            echo '</td>';
+            echo '<td>';
+            echo $exam->registerBy;
+            echo '</td>';
+            echo '</tr>';
+    }
+    ?>
+</table>
+
+<?php
+include_once(__MENU__);
+include_once(__FOOTER__); ?>

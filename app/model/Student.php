@@ -26,16 +26,22 @@ class Student
     /**
      * @var string
      */
-    private $id;
+    public $id;
     /**
      * @var string;
      */
-    private $name;
+    public $name;
     /**
      * @var string
      */
-    private $surname;
+    public $surname;
 
+    /**
+     * Student constructor.
+     * @param $id
+     * @param $name
+     * @param $surname
+     */
     public function __construct($id, $name, $surname)
     {
         $this->id = $id;
@@ -56,27 +62,13 @@ class Student
     }
 
     /**
+     * Select laurea name for student from id.
      * @return string
      */
-    public function getId(): string
+    public static function sq_SelectStudentCourse()
     {
-        return $this->id;
+        return "SELECT lauree.nome
+                FROM lauree INNER JOIN studenti ON lauree.PK_id = studenti.FK_laurea
+                WHERE studenti.matricola LIKE :id";
     }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSurname(): string
-    {
-        return $this->surname;
-    }
-
 }

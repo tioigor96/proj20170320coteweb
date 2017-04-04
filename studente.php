@@ -39,12 +39,16 @@ if (!isset($_GET['id'])) {                                       //Am I visiting
 
 try {
     $search = new SearchStudent(new Database());
+
     $student = $search->searchStudent($_GET['id']);
+    $student = $student[0];
+
     $exams = $search->searchStudentExams($_GET['id']);
+
+    $course = $search->searchStudentCourse($_GET['id']);
+    $course = $course['nome'];
 } catch (PDOException $e) {
     die($e->getCode() . ":" . $e->getMessage());
 }
 
-print_r($exams);
-//TODO: file stampa
-//include_once(__VIEW__ . "student.html");
+include_once(__VIEW__ . "studente.html");

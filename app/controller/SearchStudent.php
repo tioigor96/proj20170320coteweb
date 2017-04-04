@@ -78,11 +78,26 @@ class SearchStudent
             $exams[] = new Exam($exam['c_name'],
                 $exam['t_name'] . " " . $exam['t_sname'],
                 $exam['l_name'], $exam['cfu'],
-                $exam['voto'] . ($exam['lode']==1 ? " e lode" : ""),
+                $exam['voto'] . ($exam['lode'] == 1 ? " e lode" : ""),
                 date('d/m/Y', strtotime($exam['data'])),
                 $exam['a_name'] . " " . $exam['a_sname']);
         }
 
         return $exams;
+    }
+
+    /**
+     * Search student's course from id.
+     * @param $id
+     * @return string
+     */
+    public function searchStudentCourse($id)
+    {
+        $sth = $this->db->prepareQuery(Student::sq_SelectStudentCourse());
+
+        $sth->bindParam(":id", $id, PDO::PARAM_STR);
+        $sth->execute();
+
+        return $sth->fetch();
     }
 }
