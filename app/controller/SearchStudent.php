@@ -42,7 +42,7 @@ class SearchStudent
      * @param string $id ; DEFAULT "%"
      * @param string $name ; DEFAULT "%"
      * @param string $surname ; DEFAULT "%"
-     * @return array
+     * @return stdClass[]
      */
     public function searchStudent($id = "%", $name = "%", $surname = "%")
     {
@@ -61,9 +61,9 @@ class SearchStudent
     }
 
     /**
-     * Search student's exams from his id. Return stdObj array.
+     * Search student's exams from his id. Return stdClass array.
      * @param $id string
-     * @return array
+     * @return stdClass[]
      */
     public function searchStudentExams($id)
     {
@@ -99,5 +99,39 @@ class SearchStudent
         $sth->execute();
 
         return $sth->fetch();
+    }
+
+    public function insertStudent($name, $surname, $date, $fk_course, $id = "")
+    {
+        if (strlen($id) == 0) {
+            $id = $this->getMaxID() + 1;
+            $id = sprintf("%6d", $id);
+        }
+
+        $sth=$this->db->prepareQuery(Student::sq_InsertStudent());
+
+        $sth->bindParam(":id",$id,PDO::PARAM_STR);
+        $sth->bindParam(":name",$name,PDO::PARAM_STR);
+        $sth->bindParam(":surname",$surname,PDO::PARAM_STR);
+        $sth->bindParam(":date",$date,PDO::PARAM_STR);
+        $sth->bindParam(":fk_course",$fk_course,PDO::PARAM_INT);
+
+        $sth->execute();
+    }
+
+    /**
+     * Get current max id number for students.
+     * @return int
+     */
+    public function getMaxID()
+    {
+        $sth = $this->db->prepareQuery("SELECT matricola " .
+            "FROM studenti ORDER BY matricola DESC LIMIT 1");
+
+        $sth->execute();
+        $sth = $sth->fetch();
+        $val = $sth['matricola'];
+
+        return intval($val);
     }
 }

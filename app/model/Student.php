@@ -71,4 +71,15 @@ class Student
                 FROM lauree INNER JOIN studenti ON lauree.PK_id = studenti.FK_laurea
                 WHERE studenti.matricola LIKE :id";
     }
+
+    /**
+     * Insert new student in <<studenti>> table.
+     * Need :id, :name, :surname, :date, :fk_course.
+     * @return string
+     */
+    public static function sq_InsertStudent()
+    {
+        return "INSERT INTO studenti(matricola, nome, cognome, data_nascita, FK_laurea)
+                VALUES(:id, :name, :surname, :date, :fk_course)";
+    }
 }
