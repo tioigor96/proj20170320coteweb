@@ -11,14 +11,17 @@
 
 <?php
 
-if(isset($students)){
+if (isset($students)) {
     echo '<h2>Studenti trovati:</h2>';
-    echo '<p>';
-    foreach ($students as $student) {
-    echo "<a href=\"" . __URL__ . "studente.php?id=$student->matricola\">$student->cognome $student->nome</a><br>";
+    echo '<ul>';
+    if (count($students) > 0) {
+        foreach ($students as $student) {
+        echo "<li><a href=\"" . __URL__ . "studente.php?id=$student->matricola\">$student->cognome $student->nome</a></li>";
 
-    }
-    echo "</p>";
+        }
+    } else
+    echo "Nessuno studente corrisponde ai criteri di ricerca specificati!";
+    echo "</ul>";
 }
 
 include_once(__MENU__);
