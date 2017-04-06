@@ -33,6 +33,7 @@ class Configuration
      */
     public function __construct()
     {
+        //TODO: does file exist and can it be read?
         $file = file_get_contents(__CONFJSON__);
         $this->configuration = json_decode($file, TRUE);
     }

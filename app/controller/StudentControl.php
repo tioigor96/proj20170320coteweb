@@ -21,7 +21,7 @@
  *
  * This class manipulate Student.
  */
-class SearchStudent
+class StudentControl
 {
     /**
      * @var Database
@@ -101,20 +101,21 @@ class SearchStudent
         return $sth->fetch();
     }
 
-    public function insertStudent($name, $surname, $date, $fk_course, $id = "")
+    public function insertStudent($name, $surname, $date, $fk_course, $id)
     {
-        if (strlen($id) == 0) {
+        if (intval($id) <= 0) {
             $id = $this->getMaxID() + 1;
-            $id = sprintf("%6d", $id);
         }
 
-        $sth=$this->db->prepareQuery(Student::sq_InsertStudent());
+        $id = sprintf("%06d", $id);
 
-        $sth->bindParam(":id",$id,PDO::PARAM_STR);
-        $sth->bindParam(":name",$name,PDO::PARAM_STR);
-        $sth->bindParam(":surname",$surname,PDO::PARAM_STR);
-        $sth->bindParam(":date",$date,PDO::PARAM_STR);
-        $sth->bindParam(":fk_course",$fk_course,PDO::PARAM_INT);
+        $sth = $this->db->prepareQuery(Student::sq_InsertStudent());
+
+        $sth->bindValue(":id", $id, PDO::PARAM_STR);
+        $sth->bindValue(":name", $name, PDO::PARAM_STR);
+        $sth->bindValue(":surname", $surname, PDO::PARAM_STR);
+        $sth->bindValue(":date", $date, PDO::PARAM_STR);
+        $sth->bindValue(":fk_course", $fk_course, PDO::PARAM_INT);
 
         $sth->execute();
     }

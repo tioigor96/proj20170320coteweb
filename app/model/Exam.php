@@ -18,7 +18,7 @@
  * Date: 04/04/17
  * Time: 1.03
  *
- * This class manipulate <<Exams>> table on db.
+ * This class define <<esami>> table on db.
  */
 class Exam
 {

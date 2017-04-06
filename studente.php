@@ -38,7 +38,7 @@ if (!isset($_GET['id'])) {                                       //Am I visiting
 }
 
 try {
-    $search = new SearchStudent(new Database());
+    $search = new StudentControl(new Database());
 
     $student = $search->searchStudent($_GET['id']);
     $student = $student[0];

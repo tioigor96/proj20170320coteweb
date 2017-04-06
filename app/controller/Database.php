@@ -45,6 +45,9 @@ class Database
             $this->configuration->getDB_Pass());
 
         $this->connection->setAttribute($attribute, $value);
+
+        //enable exception in PDO if there is errors in queries.
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
 

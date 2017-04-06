@@ -34,7 +34,7 @@ if (!isset($_SESSION['user'])) {                                //i'm not logged
 
 if (isset($_POST['id'])) {                                      //i'm looking for student[s]
     try {
-        $search = new SearchStudent(new Database());
+        $search = new StudentControl(new Database());
         $students = $search->searchStudent($_POST['id'], $_POST['name'], $_POST['surname']);
     } catch (PDOException $e) {
         die($e->getCode() . ":" . $e->getMessage());

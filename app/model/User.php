@@ -19,7 +19,7 @@
  * Date: 01/04/17
  * Time: 15.41
  *
- *This class define <<User>> table on db.
+ *This class define <<admin>> table on db.
  */
 class User
 {
