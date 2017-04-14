@@ -45,7 +45,8 @@ class Configuration
     public function getDSN()
     {
         return 'mysql:host=' . $this->configuration['DATABASE_HOST'] .
-            ';dbname=' . $this->configuration['DATABASE_NAME'];
+            ';dbname=' . $this->configuration['DATABASE_NAME'] .
+            ';charset=utf8';
     }
 
     /**
