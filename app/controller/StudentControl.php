@@ -19,7 +19,7 @@
  * Date: 01/04/17
  * Time: 20.55
  *
- * This class manipulate Student.
+ * This class manipulate <<studenti>> table.
  */
 class StudentControl
 {
@@ -101,6 +101,13 @@ class StudentControl
         return $sth->fetch();
     }
 
+    /**
+     * @param string $name
+     * @param string $surname
+     * @param string $date
+     * @param string $fk_course
+     * @param string $id
+     */
     public function insertStudent($name, $surname, $date, $fk_course, $id)
     {
         if (intval($id) <= 0) {
@@ -126,8 +133,7 @@ class StudentControl
      */
     public function getMaxID()
     {
-        $sth = $this->db->prepareQuery("SELECT matricola " .
-            "FROM studenti ORDER BY matricola DESC LIMIT 1");
+        $sth = $this->db->prepareQuery(Student::sq_MaxID());
 
         $sth->execute();
         $sth = $sth->fetch();

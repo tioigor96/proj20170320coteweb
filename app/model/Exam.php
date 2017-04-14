@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,7 +78,8 @@ class Exam
      * Select exams for student from id.
      * @return string
      */
-    public static function sq_searchExamStudent() {
+    public static function sq_searchExamStudent()
+    {
         return "SELECT corsi.nome AS c_name, docenti.nome AS t_name, docenti.cognome AS t_sname,
                        lauree.nome AS l_name, corsi.cfu, esami.voto, esami.lode, esami.data,
                        admin.nome AS a_name, admin.cognome AS a_sname
@@ -88,5 +90,24 @@ class Exam
                       INNER JOIN lauree ON corsi.FK_laurea = lauree.PK_id
                 WHERE studenti.matricola LIKE :id
                 ORDER BY esami.data ASC";
+    }
+
+    /**
+     * Select exams. NEED parameters :s_id (studenti.matricola) and :fks_id(esami.FK_corso)
+     * @return string
+     */
+    public static function sq_searchExamStudentSubject()
+    {
+        return "SELECT * FROM esami WHERE FK_studente LIKE :s_id AND esami.FK_corso = :fks_id";
+    }
+
+    /**
+     * Insert exam. NEED parameters :fks_id, :s_id, :degree, :lode, :date, :fka_id.
+     * @return string
+     */
+    public static function sq_insertExam()
+    {
+        return "INSERT INTO esami(FK_corso, FK_studente, voto, lode, data, FK_admin)
+                VALUE(:fks_id, :s_id, :degree, :lode, :date, :fka_id)";
     }
 }

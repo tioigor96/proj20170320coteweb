@@ -1,7 +1,10 @@
 <?php include_once(__HEADER__); ?>
 
 <h2>Inserimento nuovo studente:</h2>
-<h3 style="color: <?php echo strpos($result,'Errore')!==FALSE?'red':'green'; ?>;"><?php echo $result; ?></h3>
+<?php
+    if($result != null)
+        echo '<h3 style="color: ' . (strpos($result,'Errore')!==FALSE?'red':'green') . '">' . $result . '</h3>';
+?>
 <!-- TODO: tabella! P******* fa schifo così!-->
 <form method="post" action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>">
     Matricola: <input type="text" name="id"><br>
@@ -12,7 +15,7 @@
     <?php
         foreach($courses as $course) {
             echo '<option value="' . $course->PK_id. '">' . $course->nome . '</option>';
-        }
+    }
     ?></select><br>
     <input type="submit" value="Aggiungi >>">
 

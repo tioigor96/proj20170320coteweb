@@ -42,6 +42,8 @@ $db = null;
  */
 $courses = null;
 
+$result = null;
+
 try {                       //get all courses
     $db = new Database();
     $courses = (new CourseController($db))->searchCourse();

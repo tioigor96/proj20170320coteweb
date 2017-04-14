@@ -28,7 +28,7 @@ class Student
      */
     public $id;
     /**
-     * @var string;
+     * @var string
      */
     public $name;
     /**
@@ -37,17 +37,25 @@ class Student
     public $surname;
 
     /**
-     * Student constructor.
-     * @param $id
-     * @param $name
-     * @param $surname
+     * @var string
      */
-    public function __construct($id, $name, $surname)
+    public $course;
+
+    /**
+     * Student constructor.
+     * @param string $id
+     * @param string $name
+     * @param string $surname
+     * @param string $course DEFAULT "N/D"
+     */
+    public function __construct($id, $name, $surname, $course = "N/D")
     {
         $this->id = $id;
         $this->name = $name;
         $this->surname = $surname;
+        $this->course = $course;
     }
+
 
     /**
      * Select Student(s) from db with id || name || username.
@@ -81,5 +89,36 @@ class Student
     {
         return "INSERT INTO studenti(matricola, nome, cognome, data_nascita, FK_laurea)
                 VALUES(:id, :name, :surname, :date, :fk_course)";
+    }
+
+    /**
+     * Get maximum id in <<studenti>> table.
+     * @return string
+     */
+    public static function sq_MaxID()
+    {
+        return "SELECT matricola FROM studenti ORDER BY matricola DESC LIMIT 1";
+    }
+
+    /**
+     * Get "studenti.matricola, studenti.nome, studenti.cognome, lauree.nome AS c_name",
+     * NEED PARAM: :id, :name, :surname, :c_name.
+     * @return string
+     */
+    public static function sq_selectStudentEtCourse()
+    {
+        return "SELECT studenti.matricola, studenti.nome, studenti.cognome, lauree.nome AS c_name " .
+            "FROM studenti INNER JOIN lauree ON studenti.FK_laurea = lauree.PK_id WHERE " .
+            "studenti.matricola LIKE :id AND studenti.nome LIKE :name " .
+            "AND studenti.cognome LIKE :surname AND lauree.nome LIKE :c_name";
+    }
+
+    /**
+     * Student toString.
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->surname . " " . $this->name . " (" . $this->course . ")";
     }
 }
