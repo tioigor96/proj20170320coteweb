@@ -24,6 +24,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/constant.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/app/load/options.php");
 
+// CONFIGURATION
 require_once(__APP__ . "resources/Configuration.php");
 
 //CONTROLLERS
@@ -31,12 +32,16 @@ require_once(__CONTROLLER__ . "Database.php");
 require_once(__CONTROLLER__ . "Login.php");
 require_once(__CONTROLLER__ . "StudentControl.php");
 require_once(__CONTROLLER__ . "CourseController.php");
+require_once(__CONTROLLER__ . "ExamControl.php");
 
 //MODELS
 require_once(__MODEL__ . "Exam.php");
 require_once(__MODEL__ . "Student.php");
 require_once(__MODEL__ . "User.php");
 require_once(__MODEL__ . "Course.php");
+require_once(__MODEL__ . "Teacher.php");
+require_once(__MODEL__ . "Subject.php");
+
 //VIEWS, NEVER REQUIRE OR INCLUDE HERE, INCLUDE ONLY IN DELEGATED PAGE.
 /*
  * require_once(__VIEW__ . "index.html");
@@ -46,6 +51,7 @@ require_once(__MODEL__ . "Course.php");
  * require_once(__VIEW__ . "ricerca.html");
  * require_once(__VIEW__ . "studente.html");
  * require_once(__VIEW__ . "insStud.html");
+ * require_once(__VIEW__ . "insExam.html");
  */
 
 
