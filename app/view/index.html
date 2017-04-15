@@ -1,8 +1,29 @@
 <?php include_once(__HEADER__); ?>
-<h1><?php echo $messaggi; ?></h1>
-<form action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>" method="post" name="login">
-    username: <input type="text" name="username"><br/>
-    password: <input type="password" name="password"><br/>
-    <input type="submit" value="Accedi!">
-</form>
+<div style="text-align: center; margin: auto; width: 50%; height: 50%; border-color: green; border-style: double;">
+    <h1><?php echo $messaggi; ?></h1>
+    <form action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>" method="post"
+          name="login">
+        <table style="margin-left: auto; margin-right: auto; width: 50%; height: 50%; margin-bottom: 1%;">
+            <tr>
+                <td style="text-align: right">
+                    Username:
+                </td>
+                <td>
+                    <input type="text" name="username">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right">
+                    Password:
+                </td>
+                <td>
+                    <input type="password" name="password">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Accedi!"></td>
+            </tr>
+        </table>
+    </form>
+</div>
 <?php include_once(__FOOTER__); ?>
