@@ -38,7 +38,7 @@ if (isset($_SESSION['user'])) { //i'm already logged
             die($e->getCode() . ":" . $e->getMessage());
         }
 
-        if (count($user) == 1) {
+        if ($user) {
             $user = new User($user->PK_id, $user->username);
             $_SESSION['user'] = $user;
             header("Location: " . __URL__ . "ricerca.php");
