@@ -42,8 +42,8 @@ class Login
     public function doLogin($username, $password)
     {
         $sth = $this->db->prepareQuery(User::sq_SelectUser());
-        $sth->bindParam(":username", $username, PDO::PARAM_STR);
-        $sth->bindParam(":password", md5($password), PDO::PARAM_STR);
+        $sth->bindValue(":username", $username, PDO::PARAM_STR);
+        $sth->bindValue(":password", md5($password), PDO::PARAM_STR);
 
         $sth->execute();
         return $sth->fetch(PDO::FETCH_OBJ);
