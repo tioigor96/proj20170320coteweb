@@ -1,25 +1,79 @@
 <?php include_once(__HEADER__); ?>
 
-<h2>Inserimento nuovo studente:</h2>
-<?php
-    if($result != null)
-        echo '<h3 style="color: ' . (strpos($result,'Errore')!==FALSE?'red':'green') . '">' . $result . '</h3>';
-?>
-<!-- TODO: tabella! P******* fa schifo così!-->
-<form method="post" action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>">
-    Matricola: <input type="text" name="id"><br>
-    Cognome: <input type="text" name="surname"><br>
-    Nome: <input type="text" name="name"><br>
-    Data di nascita(GG/MM/AAAA): <input name="date" type="date" value="1995-01-01"><br>
-    Laurea: <select name="course">
+<header>
+    <table style="background-color: cadetblue; width: 100%;">
+        <tr>
+            <td>
+                <h2 style="width: 100%; background-color: cadetblue; padding-bottom: 0.5%;">Inserimento nuovo
+                    studente:</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php include_once(__MENU__); ?>
+            </td>
+        </tr>
+    </table>
+</header>
+<div style="margin: 20px">
     <?php
-        foreach($courses as $course) {
-            echo '<option value="' . $course->PK_id. '">' . $course->nome . '</option>';
-    }
-    ?></select><br>
-    <input type="submit" value="Aggiungi >>">
-
-</form>
+        if($result != null)
+            echo '<h3 style="color: ' . (strpos($result,'Errore')!==FALSE?'red':'green') . '">' . $result . '</h3>';
+    ?>
+    <form method="post" action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>">
+        <table>
+            <tr>
+                <td>
+                    Matricola:
+                </td>
+                <td>
+                    <input type="text" name="id">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Cognome:
+                </td>
+                <td>
+                    <input type="text" name="surname">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nome:
+                </td>
+                <td>
+                    <input type="text" name="name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Data di nascita(GG/MM/AAAA):
+                </td>
+                <td>
+                    <input name="date" type="date" value="1995-01-01">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Laurea:
+                </td>
+                <td>
+                    <select name="course">
+                        <?php
+                        foreach($courses as $course) {
+                            echo '<option value="' . $course->PK_id. '">' . $course->nome . '</option>';
+                        } ?></select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Aggiungi >>">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 
 <?php
 include_once(__MENU__);
