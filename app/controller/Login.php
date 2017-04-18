@@ -23,6 +23,9 @@
  */
 class Login
 {
+    /**
+     * @var Database
+     */
     private $db;
 
     /**
