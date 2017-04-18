@@ -1,27 +1,73 @@
 <?php include_once(__HEADER__); ?>
 
-<h2>Registrazione nuovo esame:</h2>
-<?php
-    if($result != null)
-        echo '<h3 style="color: ' . (strpos($result,'Errore')!==FALSE?'red':'green') . '">' . $result . '</h3>';
-?>
-
-<form method="post" action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>">
-    Studente: <select name="student">
+<header>
+    <table style="background-color: cadetblue; width: 100%;">
+        <tr>
+            <td>
+                <h2 style="width: 100%; background-color: cadetblue; padding-bottom: 0.5%;">Registrazione nuovo
+                    esame:</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php include_once(__MENU__); ?>
+            </td>
+        </tr>
+    </table>
+</header>
+<div style="margin: 20px">
     <?php
-    foreach($students as $student){
-        echo '<option value="' . $student->id . '">'. $student .'</option>';
-    } ?></select><br>
+        if($result != null)
+            echo '<h3 style="color: ' . (strpos($result,'Errore')!==FALSE?'red':'green') . '">' . $result . '</h3>';
+    ?>
 
-    Corso: <select name="subject">
-    <?php
-    foreach($subjects as $subject){
-        echo '<option value="' . $subject->id . '">'. $subject .'</option>';
-    } ?></select><br>
-    Voto: <input type="text" maxlength="2" name="degree"> Lode: <input type="checkbox" name="lode"><br>
-    Data: <input type="date" name="date" value="<?php echo date('Y-m-d',time()); ?>"><br>
-    <input type="submit" value="Registra>>">
-</form>
+    <form method="post" action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>">
+        <table>
+            <tr>
+                <td>
+                    Studente:
+                </td>
+                <td>
+                    <select name="student"> <?php
+                    foreach($students as $student){
+                            echo '<option value="' . $student->id . '">'. $student .'</option>';
+                        } ?></select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Corso:
+                </td>
+                <td>
+                    <select name="subject"> <?php
+                        foreach($subjects as $subject){
+                            echo '<option value="' . $subject->id . '">'. $subject .'</option>';
+                        } ?></select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Voto:
+                </td>
+                <td>
+                    <input type="text" maxlength="2" name="degree"> Lode: <input type="checkbox" name="lode">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Data:
+                </td>
+                <td>
+                    <input type="date" name="date" value="<?php echo date('Y-m-d',time()); ?>">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Registra>>">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 <?php
-include_once(__MENU__);
 include_once(__FOOTER__); ?>
