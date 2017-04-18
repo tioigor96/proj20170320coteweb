@@ -24,7 +24,7 @@
 class Configuration
 {
     /**
-     * @var contain db connection info
+     * @var array associative: contain db connection info
      */
     private $configuration;
 
