@@ -33,9 +33,15 @@ class Configuration
      */
     public function __construct()
     {
-        //TODO: does file exist and can it be read?
         $file = file_get_contents(__CONFJSON__);
+        if (!$file) {
+            die("Config file __CONFJSON__:(" . __RESOURCES__ . "config.json) not readable or not exists!");
+        }
+
         $this->configuration = json_decode($file, TRUE);
+        if ($this->configuration === NULL) {
+            die(__CONFJSON__ . ": invalid JSON file.");
+        }
     }
 
     /**
