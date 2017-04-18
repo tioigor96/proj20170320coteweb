@@ -42,6 +42,7 @@ if (isset($_SESSION['user'])) { //i'm already logged
             $user = new User($user->PK_id, $user->username);
             $_SESSION['user'] = $user;
             header("Location: " . __URL__ . "ricerca.php");
+            return;
         } else {
             session_destroy();
             $messaggi = "Credenziali errate!";
