@@ -56,17 +56,22 @@ if (isset($_POST['id'])) {  //need to add a student?
         preg_match('/[~!@#\$%\^&\*\(\)=\+\|\[\]\{\};\\:\",\.\<\>\?\/]+/', $_POST['name']) == 0 &&
         preg_match('/[~!@#\$%\^&\*\(\)=\+\|\[\]\{\};\\:\",\.\<\>\?\/]+/', $_POST['surname']) == 0
     ) {
-        try {
-            $scontrol = new StudentControl($db);
-            $scontrol->insertStudent($_POST['name'], $_POST['surname'], $_POST['date'], $_POST['course'], intval($_POST['id']));
+        $studentId = strlen($_POST['id']) > 0 ? intval($_POST['id']) : -1;
+        if ($studentId !== 0) {
+            try {
+                $scontrol = new StudentControl($db);
+                $scontrol->insertStudent($_POST['name'], $_POST['surname'], $_POST['date'], $_POST['course'], $studentId);
 
-            $result = "Inserimento completato con successo!";
-        } catch (PDOException $e) {
-            if ($e->getCode() == 23000) {
-                $result = "Errore nell'inserimento! &Egrave; presente almeno un campo errato!";
-            } else {
-                die($e->getCode() . ":" . $e->getMessage());
+                $result = "Inserimento completato con successo! Matr.: " . sprintf("%06d", $scontrol->getMaxID());
+            } catch (PDOException $e) {
+                if ($e->getCode() == 23000) {
+                    $result = "Errore nell'inserimento! &Egrave; presente almeno un campo errato! (Es.: matricola, corso, data)";
+                } else {
+                    die($e->getCode() . ":" . $e->getMessage());
+                }
             }
+        } else {
+            $result = "Errore! La matricola inserita non è corretta!";
         }
     } else {
         $result = "Errore! Nome e cognome devono essere non vuoti e non contenere simboli speciali!";
