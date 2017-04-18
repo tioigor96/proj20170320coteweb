@@ -52,17 +52,24 @@ try {                       //get all courses
 }
 
 if (isset($_POST['id'])) {  //need to add a student?
-    try {
-        $scontrol = new StudentControl($db);
-        $scontrol->insertStudent($_POST['name'], $_POST['surname'], $_POST['date'], $_POST['course'], intval($_POST['id']));
+    if (strlen($_POST['name']) > 0 && strlen($_POST['surname']) > 0 &&
+        preg_match('/[~!@#\$%\^&\*\(\)=\+\|\[\]\{\};\\:\",\.\<\>\?\/]+/', $_POST['name']) == 0 &&
+        preg_match('/[~!@#\$%\^&\*\(\)=\+\|\[\]\{\};\\:\",\.\<\>\?\/]+/', $_POST['surname']) == 0
+    ) {
+        try {
+            $scontrol = new StudentControl($db);
+            $scontrol->insertStudent($_POST['name'], $_POST['surname'], $_POST['date'], $_POST['course'], intval($_POST['id']));
 
-        $result = "Inserimento completato con successo!";
-    } catch (PDOException $e) {
-        if ($e->getCode() == 23000) {
-            $result = "Errore nell'inserimento! &Egrave; presente almeno un campo errato!";
-        } else {
-            die($e->getCode() . ":" . $e->getMessage());
+            $result = "Inserimento completato con successo!";
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) {
+                $result = "Errore nell'inserimento! &Egrave; presente almeno un campo errato!";
+            } else {
+                die($e->getCode() . ":" . $e->getMessage());
+            }
         }
+    } else {
+        $result = "Errore! Nome e cognome devono essere non vuoti e non contenere simboli speciali!";
     }
 }
 
