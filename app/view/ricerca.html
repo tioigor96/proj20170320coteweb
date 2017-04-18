@@ -1,14 +1,54 @@
 <?php include_once(__HEADER__); ?>
-<h2>
-    Ricerca studente:
-</h2>
-<form method="post" action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>">
-    Matricola: <input type="text" name="id"><br>
-    Cognome: <input type="text" name="surname"><br>
-    Nome: <input type="text" name="name"><br>
-    <input type="submit" value="Cerca >>">
-</form>
-
+<header>
+    <table style="background-color: cadetblue; width: 100%;">
+        <tr>
+            <td>
+                <h2 style="width: 100%; background-color: cadetblue; padding-bottom: 0.5%;">Ricerca studente:</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php include_once(__MENU__); ?>
+            </td>
+        </tr>
+    </table>
+</header>
+<div>
+    <form method="post" action="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']; ?>">
+        <table style="padding-top: 1%">
+            <tr>
+                <td>
+                    Matricola:
+                </td>
+                <td>
+                    <input type="text" name="id">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Cognome:
+                </td>
+                <td>
+                    <input type="text" name="surname">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nome:
+                </td>
+                <td>
+                    <input type="text" name="name"><br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <input type="submit" value="Cerca >>">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div>
 <?php
 
 if (isset($students)) {
@@ -21,8 +61,7 @@ if (isset($students)) {
         }
     } else
     echo "Nessuno studente corrisponde ai criteri di ricerca specificati!";
-    echo "</ul>";
+    echo "</ul></div>";
 }
 
-include_once(__MENU__);
 include_once(__FOOTER__); ?>
